@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Avalon-Cliente-depl
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: avaloncliente
+  template:
+    metadata:
+      labels: 
+        app: avaloncliente
+    spec:
+      containers:
+      - name: avaloncliente
+        image: gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+        volumeMounts:
+        - name: secrets
+          mountPath: /app/secrets
+          readOnly: true
+      volumes:
+      - name: secrets
+        secret:
+          secretName: appsettings
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: avaloncliente-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: avaloncliente
+  ports:
+  - name: avaloncliente
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  

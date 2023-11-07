@@ -16,7 +16,7 @@ builder.Services.AddApiVersioningConfigured();
 builder.Services.AddSwaggerSwashbuckleConfigured();
 builder.Configuration
     .SetBasePath(builder.Environment.ContentRootPath)
-    .AddJsonFile("secrets/appsettings.secrets.json", optional: true);
+    .AddJsonFile("secrets/appsettings.json", optional: true);
 
 //services
 
