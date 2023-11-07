@@ -16,26 +16,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: get pods
 
         # Authenticate with Google Cloud
       - id: "auth"
         uses: "google-github-actions/auth@v0"
         with:
           credentials_json: "${{ secrets.SERVICE_ACCOUNT }}"
-        
+          
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
+      
+      - name: Instalando plugin
+        run: gcloud components install gke-gcloud-auth-plugin
+        
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: get pods
+        
 
       - name: Authorize Docker push
         run: gcloud auth configure-docker
-
-      - name: Set kubectl context
-        run: kubectl config use-context gke_${PROJECT_ID}_${REGION}_${CLUSTER_NAME}
 
       - name: Build and tag the Docker image
         run: |
