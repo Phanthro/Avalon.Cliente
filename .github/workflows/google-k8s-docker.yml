@@ -8,6 +8,7 @@ on:
 
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID_NAME }}
+  REPO_NAME: avalon-ap1
 
 jobs:
   deploy-to-kubernetes:
@@ -32,10 +33,8 @@ jobs:
         run: gcloud components install gke-gcloud-auth-plugin
       
       - name: Credentials
-        run: gcloud container clusters get-credentials avalon-ap1 --region us-central1 --project avalon-404011
-      
-      # - name: Setando projeto
-      #   run: gcloud config set project ${PROJECT_ID}
+        run: gcloud container clusters get-credentials $REPO_NAME --region us-central1 --project $PROJECT_ID
+        
       # - uses: actions-hub/kubectl@master
       #   env:
       #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
@@ -48,8 +47,8 @@ jobs:
 
       - name: Build and tag the Docker image
         run: |
-          docker build . --tag gcr.io/avalon-404011/$REPO_NAME:$GITHUB_SHA -f docker/dockerfile
-          docker push gcr.io/avalon-404011/$REPO_NAME:$GITHUB_SHA
+          docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA -f docker/dockerfile
+          docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
 
       - name: Apply Kubernetes manifests
         run: |
