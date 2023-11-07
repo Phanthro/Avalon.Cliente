@@ -26,14 +26,20 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
       
+      - name: Atualizando gcloud
+        run: gcloud components update
+      
       - name: Instalando plugin
-        run: sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+        run: gcloud components install gke-gcloud-auth-plugin
 
-      - uses: actions-hub/kubectl@master
-        env:
-          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
-        with:
-          args: get pods
+      - name: Credentials
+        run: gcloud container clusters get-credentials avalon-ap1 --region us-central1 --project avalon-404011
+        
+      # - uses: actions-hub/kubectl@master
+      #   env:
+      #     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+      #   with:
+      #     args: get pods
         
 
       - name: Authorize Docker push
