@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: avaloncliente
-        image: gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+        image: DOCKER_IMAGE
         volumeMounts:
         - name: secrets
           mountPath: /app/secrets
