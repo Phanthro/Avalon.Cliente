@@ -9,7 +9,6 @@ on:
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID_NAME }}
   CLUSTER_NAME: nome-do-seu-cluster
-  KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
 
 jobs:
   deploy-to-kubernetes:
@@ -17,16 +16,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: get pods
+
         # Authenticate with Google Cloud
       - id: "auth"
         uses: "google-github-actions/auth@v0"
         with:
           credentials_json: "${{ secrets.SERVICE_ACCOUNT }}"
-      
-      # Authenticate with Google Cloud using the provided KUBE_CONFIG_DATA
-      - name: Authenticate with GKE
-        run: echo "$KUBE_CONFIG_DATA" | base64 -d > $HOME/.kube/config
         
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
