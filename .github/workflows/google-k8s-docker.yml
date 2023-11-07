@@ -52,4 +52,4 @@ jobs:
 
       - name: Apply Kubernetes manifests
         run: |
-          kubectl apply -f K8s/deployment.yaml
+          sed -e 's|DOCKER_IMAGE|gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA|g' K8s/deployment.yaml | kubectl apply -f -
