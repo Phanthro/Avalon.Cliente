@@ -50,7 +50,8 @@ jobs:
         run: |
           docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA -f docker/dockerfile
           docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+          echo $DOCKER_IMAGE_TAG
 
       - name: Apply Kubernetes manifests
         run: |
-          sed -e 's|DOCKER_IMAGE|"$DOCKER_IMAGE_TAG"|g' K8s/deployment.yaml | kubectl apply -f -
+          sed -e "s|DOCKER_IMAGE|$DOCKER_IMAGE_TAG|g" K8s/deployment.yaml | kubectl apply -f -
