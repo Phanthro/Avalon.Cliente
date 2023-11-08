@@ -9,7 +9,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID_NAME }}
   REPO_NAME: avalon-ap1
-  DOCKER_IMAGE_TAG: gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+  DOCKER_IMAGE_TAG: "gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA"
 
 jobs:
   deploy-to-kubernetes:
@@ -50,7 +50,7 @@ jobs:
         run: |
           docker build . --tag gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA -f docker/dockerfile
           docker push gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA
-          echo $DOCKER_IMAGE_TAG
+          echo "$DOCKER_IMAGE_TAG"
 
       - name: Apply Kubernetes manifests
         run: |
