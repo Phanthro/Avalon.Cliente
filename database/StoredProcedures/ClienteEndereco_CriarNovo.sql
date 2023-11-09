@@ -10,7 +10,8 @@ CREATE OR ALTER PROCEDURE [dbo].[ClienteEndereco_CriarNovo]
 	@Numero varchar(75),
 	@Complemento varchar(75),
 	@CEP varchar(75),
-	@Cidade varchar(75)
+	@Cidade varchar(75),
+	@Bairro varchar(75)
 
 AS
 BEGIN
@@ -21,7 +22,8 @@ BEGIN
            ,[Numero]
            ,[Complemento]
            ,[CEP]
-           ,[Cidade])
+           ,[Cidade]
+		   ,[Bairro])
      VALUES
            (@ClienteId
            ,@NomeEndereco
@@ -29,7 +31,8 @@ BEGIN
            ,@Numero
            ,@Complemento
            ,@CEP
-           ,@Cidade)
+           ,@Cidade
+		   ,@bairro)
 END
 
 SELECT Convert(int, SCOPE_IDENTITY())

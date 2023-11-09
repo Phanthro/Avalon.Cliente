@@ -6,7 +6,9 @@ CREATE TABLE [dbo].[ClienteEndereco](
 	[Numero] [varchar](100) NOT NULL,
 	[Complemento] [varchar](100) NULL,
 	[CEP] [varchar](50) NULL,
+	[Bairro] [varchar](70) NULL,
 	[Cidade] [varchar](70) NULL
+
  CONSTRAINT [PK_ClienteEndereco] PRIMARY KEY CLUSTERED 
 (
 	[ClienteEnderecoId] ASC

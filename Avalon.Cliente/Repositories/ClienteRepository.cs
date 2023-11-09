@@ -66,7 +66,8 @@ public class ClienteRepository : IClienteRepository
             { "Numero", novoClienteRepositoryDto.Numero },
             { "Complemento", novoClienteRepositoryDto.Complemento },
             { "CEP", novoClienteRepositoryDto.CEP },
-            { "Cidade", string.Empty }
+            { "Bairro", novoClienteRepositoryDto.Bairro },
+            { "Cidade", novoClienteRepositoryDto.Cidade }
         };
 
         Dictionary<string,object> clienteDetalhe = new()

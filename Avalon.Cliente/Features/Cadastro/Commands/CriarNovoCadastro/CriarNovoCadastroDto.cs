@@ -15,6 +15,7 @@ public class CriarNovoClienteDto
     public string Endereco { get; set; } = "";
     public string Complemento { get; set; } = "";
     public string Numero { get; set; } = "";
+    public string Cidade { get; set; } = "";
     //Contato
     public string NomeContato { get; set; } = "";
     public string Telefone { get; set; } = "";
