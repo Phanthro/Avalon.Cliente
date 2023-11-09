@@ -4,6 +4,8 @@ CREATE TABLE [dbo].[Cliente](
 
 	[NumeroInscricao] [varchar](75) NOT NULL,
 
+	[DataNascimento]  [varchar](75) NOT NULL,
+
 	[TipoInscricao] [varchar](2) NOT NULL,
 
 	[Nome] [varchar](75) NOT NULL,

@@ -54,6 +54,7 @@ public class ClienteRepository : IClienteRepository
             { "NumeroInscricao", novoClienteRepositoryDto.NumeroInscricao },
             { "TipoInscricao", novoClienteRepositoryDto.TipoInscricao },
             { "Nome", novoClienteRepositoryDto.Nome },
+            { "DataNascimento", novoClienteRepositoryDto.DataDeNasciemnto },
             { "Sobrenome", novoClienteRepositoryDto.Sobrenome },
             { "RazaoSocial", string.Empty }
         };

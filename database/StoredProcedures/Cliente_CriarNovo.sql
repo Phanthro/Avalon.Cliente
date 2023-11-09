@@ -7,6 +7,7 @@ CREATE OR ALTER PROCEDURE [dbo].[Cliente_CriarNovo]
 	@NumeroInscricao  varchar(75),
 	@Tipoinscricao varchar(2),
 	@Nome varchar(75),
+	@DataNascimento varchar(75),
 	@Sobrenome varchar(75),
 	@RazaoSocial varchar(75)
 
@@ -16,12 +17,14 @@ BEGIN
            ([NumeroInscricao]
            ,[TipoInscricao]
            ,[Nome]
+		   ,[DataNascimento]
            ,[Sobrenome]
            ,[RazaoSocial])
      VALUES
            (@NumeroInscricao
            ,@Tipoinscricao
            ,@Nome
+		   ,@DataNascimento
            ,@Sobrenome
            ,@RazaoSocial)
 END
