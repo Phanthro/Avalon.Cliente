@@ -18,6 +18,10 @@ builder.Configuration
     .SetBasePath(builder.Environment.ContentRootPath)
     .AddJsonFile("secrets/appsettings.json", optional: true);
 
+builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
+    {
+        builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    }));
 //services
 
 var services = builder.Services;
@@ -32,6 +36,7 @@ services.AddMediatR(typeof(Program));
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
+
 
 var app = builder.Build();
 
@@ -49,6 +54,7 @@ app.UseSwaggerUI(c =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseCors("corsapp");
 
 app.MapControllers();
 
