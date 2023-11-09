@@ -15,6 +15,9 @@ spec:
       containers:
       - name: avaloncliente
         image: DOCKER_IMAGE
+        ports:
+        - containerPort: 8080
+          protocol: TCP
         volumeMounts:
         - name: secrets
           mountPath: /app/secrets
@@ -36,5 +39,5 @@ spec:
   - name: avaloncliente
     protocol: TCP
     port: 80
-    targetPort: 80
+    targetPort: 8080
   
