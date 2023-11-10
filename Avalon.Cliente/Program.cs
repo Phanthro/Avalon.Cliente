@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Avalon.ClienteService.Repositories.Interfaces;
 using Avalon.ClienteService.Repositories;
 using Avalon.ClienteService.Misc.Extensions;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
