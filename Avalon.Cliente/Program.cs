@@ -39,6 +39,7 @@ services.AddSwaggerGen();
 
 
 var app = builder.Build();
+app.UseCors("corsapp");
 
 app.UseSwagger();
 
@@ -54,7 +55,6 @@ app.UseSwaggerUI(c =>
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-app.UseCors("corsapp");
 
 app.MapControllers();
 
