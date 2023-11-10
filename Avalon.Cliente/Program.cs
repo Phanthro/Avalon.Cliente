@@ -19,7 +19,7 @@ builder.Configuration
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
-        builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
     }));
 //services
 
