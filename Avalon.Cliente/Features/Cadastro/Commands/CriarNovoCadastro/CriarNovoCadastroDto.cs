@@ -4,6 +4,7 @@ public class CriarNovoClienteDto
 {
     public string NumeroInscricao { get; set; } = "";
     public string TipoInscricao { get; set; } = "";
+    public string RazaoSocial { get; set; } = "";
     //Cliente
     public string Nome { get; set; } = "";
     public string Sobrenome { get; set; } = "";

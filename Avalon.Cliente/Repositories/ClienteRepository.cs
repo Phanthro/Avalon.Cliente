@@ -56,7 +56,7 @@ public class ClienteRepository : IClienteRepository
             { "Nome", novoClienteRepositoryDto.Nome },
             { "DataNascimento", novoClienteRepositoryDto.DataDeNasciemnto },
             { "Sobrenome", novoClienteRepositoryDto.Sobrenome },
-            { "RazaoSocial", string.Empty }
+            { "RazaoSocial", novoClienteRepositoryDto.RazaoSocial }
         };
 
         Dictionary<string,object> clienteEndereco = new()

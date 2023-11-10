@@ -29,6 +29,7 @@ var services = builder.Services;
 services /**/
     .AddTransient<DA.IDataAccess, DA.DataAccess>()
     .AddTransient<IClienteRepository, ClienteRepository>()
+    .AddTransient<IFaleConoscoRepository, FaleConoscoRepository>()
     ;
 
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
