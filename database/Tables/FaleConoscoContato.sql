@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[FaloConoscoContato](
+CREATE TABLE [dbo].[FaleConoscoContato](
 
 	[FaleConoscoContatoId] [int] IDENTITY(1,1) NOT NULL,
 

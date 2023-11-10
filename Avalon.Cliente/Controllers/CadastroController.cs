@@ -21,7 +21,7 @@ public class CadastroController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Commands.CriarNovoCliente.CriarNovoClienteDto>> CriarNovoClienteRepositoryAsync(
+    public async Task<ActionResult<Commands.CriarNovoCliente.CriarNovoClienteDto>> CriarNovoClienteAsync(
         [FromBody]Commands.CriarNovoCliente.CriarNovoClienteDto cadastro)
     {
         

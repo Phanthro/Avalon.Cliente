@@ -21,7 +21,8 @@ public class FaleConoscoController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult> CriarNovoClienteRepositoryAsync(
+    [Route("NovoContatoHomepage")]
+    public async Task<ActionResult> CriarNovoContatoHomepageAsync(
         [FromBody]Commands.ReceberContatoHomepage.ReceberContatoHomepageDto cadastro)
     {
         
