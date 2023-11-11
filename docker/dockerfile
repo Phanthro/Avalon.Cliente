@@ -1,8 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:7.0 as build-env
 WORKDIR /app
-EXPOSE 8080
-
-ENV ASPNET_URLS=http://+:8080;
 
 COPY Avalon.Cliente/*.csproj ./
 RUN dotnet restore
