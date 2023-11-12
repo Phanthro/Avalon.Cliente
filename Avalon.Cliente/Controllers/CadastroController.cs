@@ -21,12 +21,14 @@ public class CadastroController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<Commands.CriarNovoCliente.CriarNovoClienteDto>> CriarNovoClienteAsync(
+    public async Task<IActionResult> CriarNovoClienteAsync(
         [FromBody]Commands.CriarNovoCliente.CriarNovoClienteDto cadastro)
     {
         
         long result = await _mediator.Send(new Commands.CriarNovoCliente.CriarNovoCliente.Command(cadastro));
-        return Ok();
+        var retorno = new Retorno(result);
+        return Ok(retorno);
+        
         // return CreatedAtRoute( routeName:"ClienteById", routeValues:new{ ClienteId = result, version = "1.0" }, value: null );
 
     }
