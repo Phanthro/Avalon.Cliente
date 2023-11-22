@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MPSProject.CollaboratorService.Repositories.Model;
+namespace Avalon.ClienteService.Repositories.Model;
 
 [Table("ClienteDetalhe")]
 public class ClienteDetalhe

@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Avalon.ClienteService.Repositories.Model;
 
-[Table("Cliente")]
-public class Cliente
+[Table("Usuario")]
+public class Usuario
 {
     [Key]
     [Required]
-    public int ClienteId { get; set; }
+    public int UsuarioId { get; set; }
     [Required]
     public string NumeroInscricao { get; set; } = string.Empty;
     [Required]

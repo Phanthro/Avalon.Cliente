@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Avalon.ClienteService.Repositories.Interfaces;
 using Avalon.ClienteService.Repositories;
 using Avalon.ClienteService.Misc.Extensions;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +20,11 @@ builder.Configuration
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
-        builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        builder
+        .WithOrigins("http://localhost:3000", "https://localhost:3000")
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
     }));
 //services
 
@@ -29,6 +34,7 @@ services /**/
     .AddTransient<DA.IDataAccess, DA.DataAccess>()
     .AddTransient<IClienteRepository, ClienteRepository>()
     .AddTransient<IFaleConoscoRepository, FaleConoscoRepository>()
+    .AddTransient<IUsuarioRepository, UsuarioRepository>()
     ;
 
 services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -36,7 +42,15 @@ services.AddMediatR(typeof(Program));
 services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
+services.ConfiguraBearer(builder.Configuration);
+services.AddControllers(x => x.Filters.Add(new AuthorizeFilter()));
 
+services.Configure<CookiePolicyOptions>(options =>
+{
+    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
 
 var app = builder.Build();
 app.UseCors("corsapp");

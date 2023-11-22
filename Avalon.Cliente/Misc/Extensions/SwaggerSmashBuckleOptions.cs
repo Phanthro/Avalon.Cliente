@@ -36,7 +36,9 @@ public class SwaggerSmashBuckleOptions : IConfigureOptions<SwaggerGenOptions>
             Version = description.ApiVersion.ToString(),
             Description 
                 = "WebApi Para operações relacionadas a cadastro de clientes " +
-                  "\n- **Novo Cadastro** \n",
+                 "\n- **Novo Cadastro** \n" +
+                 "\n- **Novo Contato** \n" +
+                  "\n- **Login** \n",
             Contact = new OpenApiContact() { Name = "Avalon Auto Posto", Email = "avalon@avalon.com.br" },       
         };
 

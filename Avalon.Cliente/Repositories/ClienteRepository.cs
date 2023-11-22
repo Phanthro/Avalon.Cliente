@@ -1,7 +1,6 @@
 using Avalon.ClienteService.Features.Cadastro.Commands.CriarNovoCliente;
 using Avalon.ClienteService.Repositories.Interfaces;
 using DataAccess;
-using MPSProject.CollaboratorService.Repositories.Model;
 
 namespace Avalon.ClienteService.Repositories;
 
