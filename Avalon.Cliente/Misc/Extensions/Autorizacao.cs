@@ -52,6 +52,10 @@ public static class Autorizacao
                         context.Token = context.Request.Cookies["avalon-token"];
                     }
                     return Task.CompletedTask;
+                },
+                OnAuthenticationFailed = context => {
+                    context.Response.Cookies.Delete("avalon-token");
+                    return Task.CompletedTask;
                 }
             };
         });

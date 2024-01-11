@@ -5,6 +5,7 @@ using Avalon.ClienteService.Repositories.Interfaces;
 using Avalon.ClienteService.Repositories;
 using Avalon.ClienteService.Misc.Extensions;
 using Microsoft.AspNetCore.Mvc.Authorization;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,12 +22,12 @@ builder.Configuration
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
         builder
-        .WithOrigins("http://localhost:3000", "https://localhost:3000")
+        // .AllowAnyOrigin()
         .AllowAnyMethod()
         .AllowAnyHeader()
+        .SetIsOriginAllowed(origin => true)
         .AllowCredentials();
     }));
-//services
 
 var services = builder.Services;
 
@@ -43,7 +44,11 @@ services.AddControllers();
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen();
 services.ConfiguraBearer(builder.Configuration);
-services.AddControllers(x => x.Filters.Add(new AuthorizeFilter()));
+services.AddControllers(x => x.Filters.Add(new AuthorizeFilter()))
+.AddJsonOptions(opcoes =>
+            {
+                opcoes.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+            });
 
 services.Configure<CookiePolicyOptions>(options =>
 {

@@ -21,8 +21,22 @@ public class UsuarioController : ControllerBase
         _mediator = mediator;
     }
 
+    [HttpGet("obterListaDeUsuarios")]
+    public async Task<IActionResult> ObterListaDeUsuarios()
+    {
+        
+        IEnumerable<Query.ListarUsuarios.ListarUsuariosDto> result = await _mediator.Send(new Query.ListarUsuarios.ListarUsuarios.Query());
+        var retorno = new Retorno(result);
+        if(retorno.Status != 200)
+        {
+            return BadRequest(retorno);
+        }
+        return Ok(retorno);
+
+    }
+
     [HttpGet("PermissoePorUsuarioId/{usuarioId:int}")]
-    public async Task<IActionResult> CriarNovoClienteAsync(int usuarioId)
+    public async Task<IActionResult> ObterPermissoesUsuario(int usuarioId)
     {
         
         IEnumerable<ObterPermissoesUsuarioDto> result = await _mediator.Send(new Query.ObterPermissoesUsuario.ObterPermissoesUsuario.Query(usuarioId));

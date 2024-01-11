@@ -14,9 +14,9 @@ namespace Avalon.ClienteService.Cadastro.Controllers;
 [Produces("application/json")]
 public class AuthController : ControllerBase
 {
-    private readonly ILogger<CadastroController> _logger;
+    private readonly ILogger<AuthController> _logger;
     private readonly ISender _mediator;
-    public AuthController(ILogger<CadastroController> logger, IMediator mediator)
+    public AuthController(ILogger<AuthController> logger, IMediator mediator)
     {
         _logger = logger;
         _mediator = mediator;
@@ -70,7 +70,8 @@ public class AuthController : ControllerBase
             var username = User.FindFirst("username")?.Value?? throw new Exception();
             var email = User.FindFirst("e-mail")?.Value?? throw new Exception();
             var usuarioId = User.FindFirst("usuarioId")?.Value?? throw new Exception();
-            return Ok(new {username, email, usuarioId});
+            var permissoes = User.FindFirst("permissoes")?.Value?? throw new Exception();
+            return Ok(new {username, email, usuarioId, permissoes});    
         } catch {
             return BadRequest("Token inválido");
         }

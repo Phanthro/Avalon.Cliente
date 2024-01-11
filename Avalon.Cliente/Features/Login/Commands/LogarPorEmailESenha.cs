@@ -5,6 +5,7 @@ using Avalon.ClienteService.Features.Helpers;
 using Avalon.ClienteService.Repositories.Interfaces;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace Avalon.ClienteService.Features.Login.Commands.LogarPorEmailESenha;
 
@@ -48,7 +49,8 @@ public class LogarPorEmailESenha
                 {
                     new Claim("username", usuario.Nome),
                     new Claim("e-mail", usuario.Email),
-                    new Claim("usuarioId", usuario.UsuarioId.ToString())
+                    new Claim("usuarioId", usuario.UsuarioId.ToString()),
+                    new Claim("permissoes", JsonConvert.SerializeObject(usuario.Permissoes))
                 };
 
                 string? jwtKey = _configuration["Jwt:Key"] ?? throw new Exception("Erro JWT");

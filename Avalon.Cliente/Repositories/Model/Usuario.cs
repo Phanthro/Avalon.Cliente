@@ -10,12 +10,14 @@ public class Usuario
     [Required]
     public int UsuarioId { get; set; }
     [Required]
-    public string NumeroInscricao { get; set; } = string.Empty;
+    public int ClienteId { get; set; }
     [Required]
     public string Nome { get; set; } = string.Empty;
     [Required]
     public string Sobrenome { get; set; } = string.Empty;
     [Required]
-    public string razaoSocial { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    [Required]
+    public bool IsAtivo { get; set; }
 
 }

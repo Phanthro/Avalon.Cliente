@@ -30,6 +30,16 @@ public class UsuarioRepository : IUsuarioRepository
         
     }
 
+    public async Task<IEnumerable<Usuario>> ListarUsuarios()
+    {
+         IEnumerable<Usuario>? user = await _dataAccess.ExecuteAsync<Usuario>(
+                "[dbo].[Usuario_Listar_Usuarios]"
+            );
+        
+        return user;
+        
+    }
+
     public async Task<IEnumerable<UsuarioPermissaoPagina>> ObterPermissoesPaginaUsuario(int usuarioId)
     {
          IEnumerable<UsuarioPermissaoPagina> permissoes = await _dataAccess.ExecuteAsync<UsuarioPermissaoPagina>(

@@ -7,15 +7,10 @@ namespace Avalon.ClienteService.Repositories.Model;
 public class Cliente
 {
     [Key]
-    [Required]
     public int ClienteId { get; set; }
-    [Required]
     public string NumeroInscricao { get; set; } = string.Empty;
-    [Required]
     public string Nome { get; set; } = string.Empty;
-    [Required]
     public string Sobrenome { get; set; } = string.Empty;
-    [Required]
-    public string razaoSocial { get; set; } = string.Empty;
+    public string RazaoSocial { get; set; } = string.Empty;
 
 }
