@@ -4,17 +4,17 @@ metadata:
   name: avalon-cliente-depl
 spec:
   replicas: 1
-  selector: 
-    matchLabels: 
+  selector:
+    matchLabels:
       app: avaloncliente
   template:
     metadata:
-      labels: 
+      labels:
         app: avaloncliente
     spec:
       containers:
       - name: avaloncliente
-        image: docker push gcr.io/booming-pride-412719/avalon-back:v1.0
+        image: gcr.io/booming-pride-412719/avalon-back:v1.2
         ports:
         - containerPort: 80
           protocol: TCP
@@ -25,7 +25,7 @@ spec:
       volumes:
       - name: secrets
         secret:
-          secretName: appsettings
+          secretName: appsettings-avalon
 ---
 apiVersion: v1
 kind: Service
@@ -40,4 +40,3 @@ spec:
     protocol: TCP
     port: 80
     targetPort: 80
-  
