@@ -1,4 +1,5 @@
 using Avalon.ClienteService.Features.Login.Commands.LogarPorEmailESenha;
+using Avalon.ClienteService.Features.Usuario.Commands.CriarNovoUsuario;
 using Avalon.ClienteService.Repositories.Interfaces;
 using Avalon.ClienteService.Repositories.Model;
 using DataAccess;
@@ -54,4 +55,8 @@ public class UsuarioRepository : IUsuarioRepository
         
     }
 
+    public Task<int> CriarNovoUsuario(CriarNovoUsuarioDto usuario)
+    {
+        throw new NotImplementedException();
+    }
 }

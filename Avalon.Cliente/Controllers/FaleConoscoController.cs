@@ -1,4 +1,5 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Commands = Avalon.ClienteService.Features.FaleConosco.Commands;
 
@@ -22,6 +23,7 @@ public class FaleConoscoController : ControllerBase
 
     [HttpPost]
     [Route("NovoContatoHomepage")]
+    [AllowAnonymous]
     public async Task<ActionResult> CriarNovoContatoHomepageAsync(
         [FromBody]Commands.ReceberContatoHomepage.ReceberContatoHomepageDto cadastro)
     {

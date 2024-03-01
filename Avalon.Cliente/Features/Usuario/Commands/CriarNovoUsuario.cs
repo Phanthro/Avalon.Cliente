@@ -20,9 +20,9 @@ public class CriarNovoUsuario
         public async Task<long> Handle(Command request, CancellationToken cancellationToken)
         {
             Validate(request);
-            var dbResult = await _usuarioRepo.ClienteCriarNovo(request.ClientDto);
+            // var dbResult = await _usuarioRepo.ClienteCriarNovo(request.ClientDto);
 
-            return dbResult;
+            return await Task.FromResult(0);
             
         }
 

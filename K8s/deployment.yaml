@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: avaloncliente
-        image: DOCKER_IMAGE
+        image: docker push gcr.io/booming-pride-412719/avalon-back:v1.0
         ports:
         - containerPort: 80
           protocol: TCP

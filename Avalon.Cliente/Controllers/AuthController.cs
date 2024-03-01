@@ -38,9 +38,9 @@ public class AuthController : ControllerBase
             var cookieOptions = new CookieOptions
             {
                 HttpOnly = true,
-                Secure = true,
+                Secure = false,
                 SameSite = SameSiteMode.Lax,
-                MaxAge = TimeSpan.FromMinutes(60),
+                Expires = DateTime.Now.AddHours(1),
             };
 
             Response.Cookies.Append("avalon-token", token, cookieOptions);
